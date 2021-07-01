@@ -1,0 +1,11 @@
+.ToDoList {
+    text-align: center;
+    position: fixed;
+    left: 10vw;
+    top: 70vh;
+}
+
+.check-img {
+    width: 10vw;
+    height: 10vh;
+}
