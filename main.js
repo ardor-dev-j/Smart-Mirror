@@ -1,20 +1,31 @@
 'use strict'
 
-const {app, BrowserWindow} = require('electron')
+const {app, BrowserWindow, ipcMain} = require('electron')
+
+// use jquery
+// let $ = require('jquery')
+const path = require('path')
+
+let win
 
 function createWindow(){
-    const win = new BrowserWindow({
+    win = new BrowserWindow({
         fullscreen: true,
         backgroundColor: '#000000',
-        frame: false
+        frame: false,
+        webPreferences: {
+            preload: path.join(__dirname, 'preload.js')
+        }
     })
 
+
     win.loadFile('index.html')
+
+    win.webContents.openDevTools()
 }
 
-function createToDo(){
 
-}
+
 
 app.on('window-all-closed', function () {
     if (process.platform !== 'darwin') app.quit()
@@ -22,6 +33,9 @@ app.on('window-all-closed', function () {
 
 app.whenReady().then(() => {
     createWindow()
+
+
+
 
 
 app.on('activate', function () {
